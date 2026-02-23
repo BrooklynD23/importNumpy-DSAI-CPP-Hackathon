@@ -1,0 +1,13 @@
+# Claude Code / agent setup
+.claude/
+skills/
+Agents.md
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Generated outputs
+data/*.duckdb
+reports/
