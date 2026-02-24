@@ -34,6 +34,20 @@ echo ""
 .venv/bin/python -m pipeline.run_pipeline
 echo ""
 
+# ── Step 4: Run analysis notebooks ─────────────────────────────────────────
+echo "[NOTEBOOKS] Running analysis notebooks..."
+mkdir -p reports/figures
+for nb in q1_outcome_geography q2_access_vs_outcomes q3_outlier_communities \
+          q4_sensitivity_tiers q5_sparse_reporting q6_premature_conclusions \
+          summary_executive; do
+    echo "[NOTEBOOK] Running $nb..."
+    .venv/bin/jupyter nbconvert --execute "notebooks/${nb}.ipynb" \
+        --to html --output-dir=reports/ \
+        --ExecutePreprocessor.timeout=300 2>&1
+done
+echo "[NOTEBOOKS] All notebooks executed."
+echo ""
+
 # ── Done ──────────────────────────────────────────────────────────────────────
 echo "========================================"
 echo " Pipeline finished!"
@@ -42,4 +56,7 @@ echo " Outputs:"
 echo "   Database:  data/health.duckdb"
 echo "   Reports:   reports/data_quality_report.md"
 echo "              reports/assumption_log.csv"
+echo "              reports/q*.html (notebook outputs)"
+echo "              reports/summary_executive.html"
+echo "   Figures:   reports/figures/*.png"
 echo "========================================"

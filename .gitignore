@@ -11,3 +11,4 @@ __pycache__/
 # Generated outputs
 data/*.duckdb
 reports/
+reports/figures/
