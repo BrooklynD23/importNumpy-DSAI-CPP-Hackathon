@@ -1,0 +1,6 @@
+id,assumption,impact,mitigation
+A1,Columns with >5% NULLs flagged for review,May bias aggregate statistics,Filter or impute in Phase 3
+A2,"Rate columns should be in [0, 100]; cost/income should be > 0",Out-of-range values flagged in data_quality_flag,Flagged rows excluded from analytical views
+A3,"Duplicates are legitimate repeated observations, not data errors",Aggregations use all rows,Sensitivity analysis could deduplicate
+A4,Original Disease Category column is unreliable — replaced by hand-curated map,All category-based analyses use corrected mapping,disease_category_original kept for audit trail
+A5,Countries with <30 observations flagged as small-N,Unstable estimates; wider confidence intervals,small_n_flag in country_summary; minimum N enforced in views

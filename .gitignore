@@ -6,12 +6,11 @@ Raw Dataset/
 skills/
 Agents.md
 
+# Generated database (185MB, exceeds GitHub 100MB limit)
+data/*.duckdb
+
 # Python
 .venv/
 __pycache__/
 *.pyc
 
-# Generated outputs
-data/*.duckdb
-reports/
-reports/figures/
