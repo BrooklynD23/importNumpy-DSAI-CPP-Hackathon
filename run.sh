@@ -39,7 +39,7 @@ echo "[NOTEBOOKS] Running analysis notebooks..."
 mkdir -p reports/figures
 for nb in q1_outcome_geography q2_access_vs_outcomes q3_outlier_communities \
           q4_sensitivity_tiers q5_sparse_reporting q6_premature_conclusions \
-          summary_executive; do
+          benchmark_comparison summary_executive; do
     echo "[NOTEBOOK] Running $nb..."
     .venv/bin/jupyter nbconvert --execute "notebooks/${nb}.ipynb" \
         --to html --output-dir=reports/ \
@@ -57,6 +57,7 @@ echo "   Database:  data/health.duckdb"
 echo "   Reports:   reports/data_quality_report.md"
 echo "              reports/assumption_log.csv"
 echo "              reports/q*.html (notebook outputs)"
+echo "              reports/benchmark_comparison.html"
 echo "              reports/summary_executive.html"
 echo "   Figures:   reports/figures/*.png"
 echo "========================================"

@@ -1,3 +1,6 @@
+# Raw dataset (large file, not tracked)
+Raw Dataset/
+
 # Claude Code / agent setup
 .claude/
 skills/
