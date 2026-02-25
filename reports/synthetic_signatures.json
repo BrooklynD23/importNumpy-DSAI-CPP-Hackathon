@@ -1,0 +1,303 @@
+{
+  "bounded_uniform_checks": {
+    "definition": "Compare observed mean/sd to Uniform(min,max) expectation (descriptive sanity check).",
+    "per_column": {
+      "healthcare_access": {
+        "abs_error": {
+          "mean": 0.01216472,
+          "sd": 0.002588459
+        },
+        "expected_uniform": {
+          "mean": 75.0,
+          "sd": 14.4337567297
+        },
+        "observed": {
+          "max": 100.0,
+          "mean": 74.98783528,
+          "min": 50.0,
+          "sd": 14.4363451888
+        }
+      },
+      "improvement_in_5_years": {
+        "abs_error": {
+          "mean": 0.00259267,
+          "sd": 0.0015469869
+        },
+        "expected_uniform": {
+          "mean": 5.0,
+          "sd": 2.8867513459
+        },
+        "observed": {
+          "max": 10.0,
+          "mean": 5.00259267,
+          "min": 0.0,
+          "sd": 2.8882983329
+        }
+      },
+      "incidence_rate": {
+        "abs_error": {
+          "mean": 0.0050054,
+          "sd": 0.0023127724
+        },
+        "expected_uniform": {
+          "mean": 7.55,
+          "sd": 4.3012595055
+        },
+        "observed": {
+          "max": 15.0,
+          "mean": 7.5550054,
+          "min": 0.1,
+          "sd": 4.2989467331
+        }
+      },
+      "mortality_rate": {
+        "abs_error": {
+          "mean": 8.114e-05,
+          "sd": 0.0015426968
+        },
+        "expected_uniform": {
+          "mean": 5.05,
+          "sd": 2.8578838325
+        },
+        "observed": {
+          "max": 10.0,
+          "mean": 5.04991886,
+          "min": 0.1,
+          "sd": 2.8594265293
+        }
+      },
+      "prevalence_rate": {
+        "abs_error": {
+          "mean": 0.00200814,
+          "sd": 0.0044458333
+        },
+        "expected_uniform": {
+          "mean": 10.05,
+          "sd": 5.7446351784
+        },
+        "observed": {
+          "max": 20.0,
+          "mean": 10.04799186,
+          "min": 0.1,
+          "sd": 5.7401893451
+        }
+      },
+      "recovery_rate": {
+        "abs_error": {
+          "mean": 0.00306621,
+          "sd": 0.0100865553
+        },
+        "expected_uniform": {
+          "mean": 74.5,
+          "sd": 14.1450815951
+        },
+        "observed": {
+          "max": 99.0,
+          "mean": 74.49693379,
+          "min": 50.0,
+          "sd": 14.1551681505
+        }
+      },
+      "urbanization_rate": {
+        "abs_error": {
+          "mean": 0.01478765,
+          "sd": 0.0067826623
+        },
+        "expected_uniform": {
+          "mean": 55.0,
+          "sd": 20.2072594216
+        },
+        "observed": {
+          "max": 90.0,
+          "mean": 54.98521235,
+          "min": 20.0,
+          "sd": 20.2140420839
+        }
+      }
+    }
+  },
+  "combination_coverage": {
+    "coverage_rate": 0.9998166667,
+    "max_possible": 120000,
+    "observed": 119978
+  },
+  "correlation_scan": {
+    "domain_critical": {
+      "access__mortality": 7.72027e-05,
+      "access__recovery": 0.0015980494,
+      "education__access": 0.0010848454,
+      "education__mortality": -0.0001102552,
+      "income__access": -0.0013082997,
+      "income__mortality": -0.0015033563,
+      "urbanization__access": 0.0003627764
+    },
+    "max_abs_corr": 0.0023368218,
+    "numeric_columns": [
+      "prevalence_rate",
+      "incidence_rate",
+      "mortality_rate",
+      "population_affected",
+      "healthcare_access",
+      "doctors_per_1000",
+      "hospital_beds_per_1000",
+      "avg_treatment_cost_usd",
+      "recovery_rate",
+      "dalys",
+      "improvement_in_5_years",
+      "per_capita_income",
+      "education_index",
+      "urbanization_rate"
+    ],
+    "top_pairs_by_abs_r": [
+      {
+        "abs_r": 0.0023368218,
+        "pair": "incidence_rate__population_affected",
+        "r": 0.0023368218
+      },
+      {
+        "abs_r": 0.0023337174,
+        "pair": "prevalence_rate__urbanization_rate",
+        "r": 0.0023337174
+      },
+      {
+        "abs_r": 0.0022273165,
+        "pair": "hospital_beds_per_1000__education_index",
+        "r": -0.0022273165
+      },
+      {
+        "abs_r": 0.0020107258,
+        "pair": "avg_treatment_cost_usd__per_capita_income",
+        "r": -0.0020107258
+      },
+      {
+        "abs_r": 0.0018305935,
+        "pair": "mortality_rate__population_affected",
+        "r": -0.0018305935
+      },
+      {
+        "abs_r": 0.0017770978,
+        "pair": "population_affected__avg_treatment_cost_usd",
+        "r": 0.0017770978
+      },
+      {
+        "abs_r": 0.001677791,
+        "pair": "recovery_rate__education_index",
+        "r": -0.001677791
+      },
+      {
+        "abs_r": 0.0016749649,
+        "pair": "population_affected__dalys",
+        "r": -0.0016749649
+      },
+      {
+        "abs_r": 0.0015980494,
+        "pair": "healthcare_access__recovery_rate",
+        "r": 0.0015980494
+      },
+      {
+        "abs_r": 0.0015849559,
+        "pair": "doctors_per_1000__hospital_beds_per_1000",
+        "r": 0.0015849559
+      }
+    ]
+  },
+  "dataset_path": "Raw Dataset/Global Health Statistics.csv",
+  "dimensions": {
+    "age_group": 4,
+    "country": 20,
+    "disease_name": 20,
+    "gender": 3,
+    "year": 25
+  },
+  "duplicate_groups": {
+    "cell_n_distribution": {
+      "max": 23,
+      "mean": 8.3348613913,
+      "min": 1,
+      "p50": 8,
+      "p95": 13,
+      "sd": 2.8845218834
+    },
+    "count_groups_with_n_gt_1": 119731
+  },
+  "label_reliability": {
+    "categories_per_disease": {
+      "max": 11,
+      "mean": 11.0,
+      "min": 11
+    },
+    "entropy_by_disease": {
+      "gap_to_max": 0.0001419281,
+      "max_possible": 3.4594316186,
+      "mean": 3.4592896905
+    },
+    "independence": {
+      "chi2": 187.2502129656,
+      "cramers_v": 0.0043272418,
+      "dof": 190,
+      "p_value": 0.5428030922
+    },
+    "n_categories": 11,
+    "n_diseases": 20
+  },
+  "n_rows": 1000000,
+  "quantization": {
+    "definition": "pct of values where ABS(x - ROUND(x,2)) < 1e-9",
+    "per_column": {
+      "avg_treatment_cost_usd": {
+        "n_non_2dp": 0,
+        "pct_2dp": 1.0
+      },
+      "dalys": {
+        "n_non_2dp": 0,
+        "pct_2dp": 1.0
+      },
+      "doctors_per_1000": {
+        "n_non_2dp": 0,
+        "pct_2dp": 1.0
+      },
+      "education_index": {
+        "n_non_2dp": 0,
+        "pct_2dp": 1.0
+      },
+      "healthcare_access": {
+        "n_non_2dp": 0,
+        "pct_2dp": 1.0
+      },
+      "hospital_beds_per_1000": {
+        "n_non_2dp": 0,
+        "pct_2dp": 1.0
+      },
+      "improvement_in_5_years": {
+        "n_non_2dp": 0,
+        "pct_2dp": 1.0
+      },
+      "incidence_rate": {
+        "n_non_2dp": 0,
+        "pct_2dp": 1.0
+      },
+      "mortality_rate": {
+        "n_non_2dp": 0,
+        "pct_2dp": 1.0
+      },
+      "per_capita_income": {
+        "n_non_2dp": 0,
+        "pct_2dp": 1.0
+      },
+      "prevalence_rate": {
+        "n_non_2dp": 0,
+        "pct_2dp": 1.0
+      },
+      "recovery_rate": {
+        "n_non_2dp": 0,
+        "pct_2dp": 1.0
+      },
+      "urbanization_rate": {
+        "n_non_2dp": 0,
+        "pct_2dp": 1.0
+      }
+    }
+  },
+  "schema_version": 1,
+  "table": "raw_health"
+}

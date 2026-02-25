@@ -1,5 +1,5 @@
 # Data Quality Report
-Generated: 2026-02-24T23:47:27.134350+00:00
+Generated: (see reports/_run_metadata.json)
 
 ## Missingness by Column
 
@@ -56,26 +56,26 @@ Duplicate groups (country × year × disease × age × gender): **119,731**
 
 | Disease | # Original Categories | Categories |
 |---------|----------------------|------------|
-| Tuberculosis | 11 | ['Autoimmune', 'Infectious', 'Bacterial', 'Neurological', 'Genetic', 'Respiratory', 'Metabolic', 'Parasitic', 'Viral', 'Chronic', 'Cardiovascular'] |
-| Parkinson's Disease | 11 | ['Autoimmune', 'Infectious', 'Neurological', 'Bacterial', 'Metabolic', 'Genetic', 'Parasitic', 'Respiratory', 'Viral', 'Chronic', 'Cardiovascular'] |
-| Ebola | 11 | ['Chronic', 'Cardiovascular', 'Viral', 'Genetic', 'Parasitic', 'Respiratory', 'Metabolic', 'Bacterial', 'Neurological', 'Infectious', 'Autoimmune'] |
-| Malaria | 11 | ['Chronic', 'Viral', 'Cardiovascular', 'Respiratory', 'Parasitic', 'Metabolic', 'Genetic', 'Neurological', 'Bacterial', 'Infectious', 'Autoimmune'] |
-| Cholera | 11 | ['Bacterial', 'Neurological', 'Autoimmune', 'Infectious', 'Viral', 'Chronic', 'Cardiovascular', 'Parasitic', 'Genetic', 'Respiratory', 'Metabolic'] |
-| Leprosy | 11 | ['Bacterial', 'Neurological', 'Autoimmune', 'Infectious', 'Chronic', 'Cardiovascular', 'Viral', 'Respiratory', 'Parasitic', 'Metabolic', 'Genetic'] |
-| COVID-19 | 11 | ['Neurological', 'Bacterial', 'Infectious', 'Autoimmune', 'Cardiovascular', 'Viral', 'Chronic', 'Metabolic', 'Genetic', 'Parasitic', 'Respiratory'] |
-| Hypertension | 11 | ['Neurological', 'Bacterial', 'Infectious', 'Autoimmune', 'Viral', 'Cardiovascular', 'Chronic', 'Metabolic', 'Parasitic', 'Respiratory', 'Genetic'] |
-| HIV/AIDS | 11 | ['Neurological', 'Bacterial', 'Infectious', 'Autoimmune', 'Chronic', 'Cardiovascular', 'Viral', 'Respiratory', 'Parasitic', 'Genetic', 'Metabolic'] |
-| Alzheimer's Disease | 11 | ['Chronic', 'Viral', 'Cardiovascular', 'Genetic', 'Respiratory', 'Metabolic', 'Parasitic', 'Bacterial', 'Neurological', 'Autoimmune', 'Infectious'] |
-| Influenza | 11 | ['Viral', 'Chronic', 'Cardiovascular', 'Genetic', 'Metabolic', 'Parasitic', 'Respiratory', 'Bacterial', 'Neurological', 'Autoimmune', 'Infectious'] |
-| Hepatitis | 11 | ['Bacterial', 'Neurological', 'Infectious', 'Autoimmune', 'Viral', 'Cardiovascular', 'Chronic', 'Metabolic', 'Genetic', 'Respiratory', 'Parasitic'] |
-| Asthma | 11 | ['Neurological', 'Bacterial', 'Autoimmune', 'Infectious', 'Cardiovascular', 'Chronic', 'Viral', 'Parasitic', 'Respiratory', 'Metabolic', 'Genetic'] |
-| Zika | 11 | ['Respiratory', 'Genetic', 'Parasitic', 'Metabolic', 'Cardiovascular', 'Chronic', 'Viral', 'Infectious', 'Autoimmune', 'Neurological', 'Bacterial'] |
-| Measles | 11 | ['Parasitic', 'Metabolic', 'Genetic', 'Respiratory', 'Cardiovascular', 'Viral', 'Chronic', 'Autoimmune', 'Infectious', 'Neurological', 'Bacterial'] |
-| Rabies | 11 | ['Respiratory', 'Metabolic', 'Genetic', 'Parasitic', 'Chronic', 'Cardiovascular', 'Viral', 'Infectious', 'Autoimmune', 'Bacterial', 'Neurological'] |
-| Dengue | 11 | ['Metabolic', 'Genetic', 'Respiratory', 'Parasitic', 'Cardiovascular', 'Viral', 'Chronic', 'Infectious', 'Autoimmune', 'Neurological', 'Bacterial'] |
-| Polio | 11 | ['Neurological', 'Bacterial', 'Autoimmune', 'Infectious', 'Viral', 'Chronic', 'Cardiovascular', 'Respiratory', 'Genetic', 'Parasitic', 'Metabolic'] |
-| Cancer | 11 | ['Chronic', 'Cardiovascular', 'Viral', 'Respiratory', 'Metabolic', 'Parasitic', 'Genetic', 'Neurological', 'Bacterial', 'Infectious', 'Autoimmune'] |
-| Diabetes | 11 | ['Parasitic', 'Genetic', 'Metabolic', 'Respiratory', 'Cardiovascular', 'Viral', 'Chronic', 'Infectious', 'Autoimmune', 'Neurological', 'Bacterial'] |
+| Alzheimer's Disease | 11 | ['Autoimmune', 'Bacterial', 'Cardiovascular', 'Chronic', 'Genetic', 'Infectious', 'Metabolic', 'Neurological', 'Parasitic', 'Respiratory', 'Viral'] |
+| Asthma | 11 | ['Autoimmune', 'Bacterial', 'Cardiovascular', 'Chronic', 'Genetic', 'Infectious', 'Metabolic', 'Neurological', 'Parasitic', 'Respiratory', 'Viral'] |
+| COVID-19 | 11 | ['Autoimmune', 'Bacterial', 'Cardiovascular', 'Chronic', 'Genetic', 'Infectious', 'Metabolic', 'Neurological', 'Parasitic', 'Respiratory', 'Viral'] |
+| Cancer | 11 | ['Autoimmune', 'Bacterial', 'Cardiovascular', 'Chronic', 'Genetic', 'Infectious', 'Metabolic', 'Neurological', 'Parasitic', 'Respiratory', 'Viral'] |
+| Cholera | 11 | ['Autoimmune', 'Bacterial', 'Cardiovascular', 'Chronic', 'Genetic', 'Infectious', 'Metabolic', 'Neurological', 'Parasitic', 'Respiratory', 'Viral'] |
+| Dengue | 11 | ['Autoimmune', 'Bacterial', 'Cardiovascular', 'Chronic', 'Genetic', 'Infectious', 'Metabolic', 'Neurological', 'Parasitic', 'Respiratory', 'Viral'] |
+| Diabetes | 11 | ['Autoimmune', 'Bacterial', 'Cardiovascular', 'Chronic', 'Genetic', 'Infectious', 'Metabolic', 'Neurological', 'Parasitic', 'Respiratory', 'Viral'] |
+| Ebola | 11 | ['Autoimmune', 'Bacterial', 'Cardiovascular', 'Chronic', 'Genetic', 'Infectious', 'Metabolic', 'Neurological', 'Parasitic', 'Respiratory', 'Viral'] |
+| HIV/AIDS | 11 | ['Autoimmune', 'Bacterial', 'Cardiovascular', 'Chronic', 'Genetic', 'Infectious', 'Metabolic', 'Neurological', 'Parasitic', 'Respiratory', 'Viral'] |
+| Hepatitis | 11 | ['Autoimmune', 'Bacterial', 'Cardiovascular', 'Chronic', 'Genetic', 'Infectious', 'Metabolic', 'Neurological', 'Parasitic', 'Respiratory', 'Viral'] |
+| Hypertension | 11 | ['Autoimmune', 'Bacterial', 'Cardiovascular', 'Chronic', 'Genetic', 'Infectious', 'Metabolic', 'Neurological', 'Parasitic', 'Respiratory', 'Viral'] |
+| Influenza | 11 | ['Autoimmune', 'Bacterial', 'Cardiovascular', 'Chronic', 'Genetic', 'Infectious', 'Metabolic', 'Neurological', 'Parasitic', 'Respiratory', 'Viral'] |
+| Leprosy | 11 | ['Autoimmune', 'Bacterial', 'Cardiovascular', 'Chronic', 'Genetic', 'Infectious', 'Metabolic', 'Neurological', 'Parasitic', 'Respiratory', 'Viral'] |
+| Malaria | 11 | ['Autoimmune', 'Bacterial', 'Cardiovascular', 'Chronic', 'Genetic', 'Infectious', 'Metabolic', 'Neurological', 'Parasitic', 'Respiratory', 'Viral'] |
+| Measles | 11 | ['Autoimmune', 'Bacterial', 'Cardiovascular', 'Chronic', 'Genetic', 'Infectious', 'Metabolic', 'Neurological', 'Parasitic', 'Respiratory', 'Viral'] |
+| Parkinson's Disease | 11 | ['Autoimmune', 'Bacterial', 'Cardiovascular', 'Chronic', 'Genetic', 'Infectious', 'Metabolic', 'Neurological', 'Parasitic', 'Respiratory', 'Viral'] |
+| Polio | 11 | ['Autoimmune', 'Bacterial', 'Cardiovascular', 'Chronic', 'Genetic', 'Infectious', 'Metabolic', 'Neurological', 'Parasitic', 'Respiratory', 'Viral'] |
+| Rabies | 11 | ['Autoimmune', 'Bacterial', 'Cardiovascular', 'Chronic', 'Genetic', 'Infectious', 'Metabolic', 'Neurological', 'Parasitic', 'Respiratory', 'Viral'] |
+| Tuberculosis | 11 | ['Autoimmune', 'Bacterial', 'Cardiovascular', 'Chronic', 'Genetic', 'Infectious', 'Metabolic', 'Neurological', 'Parasitic', 'Respiratory', 'Viral'] |
+| Zika | 11 | ['Autoimmune', 'Bacterial', 'Cardiovascular', 'Chronic', 'Genetic', 'Infectious', 'Metabolic', 'Neurological', 'Parasitic', 'Respiratory', 'Viral'] |
 
 ## Small-N Countries (< 30 observations)
 

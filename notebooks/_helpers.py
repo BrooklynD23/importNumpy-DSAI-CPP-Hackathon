@@ -1,5 +1,6 @@
 """Shared utilities for analysis notebooks: DB connection, plot styling, figure export."""
 
+import json
 from pathlib import Path
 
 import duckdb
@@ -10,6 +11,7 @@ import seaborn as sns
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DB_PATH = PROJECT_ROOT / "data" / "health.duckdb"
 FIGURES_DIR = PROJECT_ROOT / "reports" / "figures"
+SYNTHETIC_SIGNATURES_PATH = PROJECT_ROOT / "reports" / "synthetic_signatures.json"
 FIGURES_DIR.mkdir(parents=True, exist_ok=True)
 
 # ── Color Constants ──────────────────────────────────────────────────────────
@@ -31,6 +33,21 @@ PALETTE = [COLOR_RURAL, COLOR_PERIURBAN, COLOR_URBAN, COLOR_SEMI_URBAN]
 def get_connection() -> duckdb.DuckDBPyConnection:
     """Return a read-only DuckDB connection to the pipeline database."""
     return duckdb.connect(str(DB_PATH), read_only=True)
+
+
+def load_synthetic_signatures() -> dict:
+    """Load reports/synthetic_signatures.json if present (otherwise return {})."""
+    if not SYNTHETIC_SIGNATURES_PATH.exists():
+        return {}
+    return json.loads(SYNTHETIC_SIGNATURES_PATH.read_text(encoding="utf-8"))
+
+
+def get_robustness_delta(con: duckdb.DuckDBPyConnection, view_name: str):
+    """Return the robustness_delta_summary row for a given base view name."""
+    return con.execute(
+        "SELECT * FROM robustness_delta_summary WHERE view_name = ?",
+        [view_name],
+    ).fetchdf()
 
 
 def set_plot_style() -> None:

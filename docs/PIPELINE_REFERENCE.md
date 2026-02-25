@@ -17,6 +17,9 @@ pipeline/phase2_profile.py  → reports/data_quality_report.md
                               reports/assumption_log.csv
         │
         ▼
+pipeline/phase2b_synthetic_signatures.py → reports/synthetic_signatures.json
+        │
+        ▼
 pipeline/phase3_clean.py    → DuckDB table: clean_health
                               DuckDB table: country_summary
         │
@@ -27,6 +30,14 @@ pipeline/phase4_views.py    → DuckDB tables: v_outcome_by_geography
                                              v_sensitivity_tiers
                                              v_sparse_reporting
                                              v_premature_conclusions
+        │
+        ▼
+pipeline/phase4b_robust_views.py → DuckDB table: cell_health
+                                  DuckDB tables: v_*_dedup
+                                  DuckDB table: robustness_delta_summary
+        │
+        ▼
+pipeline/phase5_prompt_gap_matrix.py → reports/prompt_gap_matrix.md
         │
         ▼
 nbconvert --execute (8 notebooks) → reports/*.html
@@ -45,9 +56,8 @@ All state lives in `data/health.duckdb`. No intermediate CSVs. No pandas for tra
 Steps:
 1. Read CSV with DuckDB's native CSV reader (type inference enabled)
 2. Normalise column names to snake_case
-3. Apply `DISEASE_CATEGORY_MAP` from `config.py` to replace unreliable original category labels
-4. Assign `urbanization_tier` (3-tier default), `urban_tier_alt1` (binary), `urban_tier_alt2` (4-tier)
-5. Compute derived columns: `access_composite`, `access_outcome_gap`
+3. Create `urbanization_tier` (default 3-tier scheme, from `urbanization_rate`)
+4. Compute `resource_index` (simple supply proxy from doctors + beds)
 
 **Verification gate:** asserts 1,000,000 rows, 25 columns, 3 distinct tiers.
 
@@ -61,11 +71,28 @@ Steps:
 Checks performed:
 - Missingness rate per column (flag threshold: >5%)
 - Out-of-range values for rate columns (valid: 0–100%)
-- Duplicate row detection
-- Disease category coverage against `DISEASE_CATEGORY_MAP`
-- Urbanization rate distribution across tier boundaries
+- Duplicate-group detection at `(country, year, disease, age, gender)` grain
+- Disease-name coverage against `DISEASE_CATEGORY_MAP` (unmapped check)
 
 Assumption log records each data decision made (5 entries), preserving an audit trail for judges.
+
+---
+
+## Phase 2b: Synthetic Signatures (`pipeline/phase2b_synthetic_signatures.py`)
+
+**Input:** `raw_health`  
+**Output:** `reports/synthetic_signatures.json`
+
+This phase consolidates the headline “synthetic / low-signal” diagnostics into a **machine-readable**
+artifact so notebooks and the executive summary can render consistent “data reality” badges without
+recomputing expensive scans.
+
+Includes (high level):
+- Combination coverage rate (near-Cartesian design check)
+- Duplicate-per-cell distribution summary
+- Quantization check (pct values consistent with 2-decimal rounding)
+- Correlation scan (max |r| and key domain pairs)
+- Label reliability (entropy + independence for `disease_name × disease_category_original`)
 
 ---
 
@@ -97,6 +124,32 @@ Six materialized tables — one per competition question. All enforce `SMALL_N_T
 
 ---
 
+## Phase 4b: Robustness (Dedup-at-Cell Views) (`pipeline/phase4b_robust_views.py`)
+
+**Input:** `clean_health` + Phase 4 base tables  
+**Outputs:** `cell_health`, `v_*_dedup`, `robustness_delta_summary`
+
+This phase addresses a core structural limitation: repeated observations per structural cell. It
+creates a deduped table (`cell_health`) that aggregates repeated observations **while preserving the
+tier labels used in analysis** (so robustness checks do not accidentally collapse the tier
+distribution via averaging artifacts), then rebuilds the six analytical views from that table.
+
+`robustness_delta_summary` is a compact join-based delta table that notebooks query for a lightweight
+“base vs dedup” check.
+
+---
+
+## Phase 5: Prompt Gap Matrix (`pipeline/phase5_prompt_gap_matrix.py`)
+
+**Input:** `DatathonHostPrompt.md` (repo file)  
+**Output:** `reports/prompt_gap_matrix.md`
+
+This report documents where the prompt asks for concepts not measured in the dataset (e.g.,
+distance-to-care, utilization) and what proxies we use instead. It is primarily a judge-defense
+artifact.
+
+---
+
 ## Notebooks
 
 All notebooks follow the same pattern:
@@ -118,6 +171,8 @@ All notebooks follow the same pattern:
 | `save_fig(fig, name)` | fn | Saves PNG (300dpi) + SVG to `FIGURES_DIR` |
 | `effect_size_label(d)` | fn | negligible / small / medium / large |
 | `format_ci(mean, ci)` | fn | "X.XX% [lo, hi]" string formatter |
+| `load_synthetic_signatures()` | fn | Loads `reports/synthetic_signatures.json` |
+| `get_robustness_delta(con, view_name)` | fn | Fetches row from `robustness_delta_summary` |
 
 ---
 
@@ -161,7 +216,7 @@ bench_action_timeline           — Swim-lane Gantt, 30/60/90 days
 run.sh
   ├── venv setup
   ├── pip install -r requirements.txt
-  ├── python -m pipeline.run_pipeline     # Phases 1–4 (sequential, gated)
+  ├── python -m pipeline.run_pipeline     # Phases 1–5 (sequential, gated)
   └── for nb in q1 q2 q3 q4 q5 q6 benchmark_comparison summary_executive:
         jupyter nbconvert --execute notebooks/${nb}.ipynb \
           --to html --output-dir=reports/ \
@@ -192,6 +247,8 @@ run.sh
 | `data/health.duckdb` | Full analytical database |
 | `reports/data_quality_report.md` | Phase 2 quality audit |
 | `reports/assumption_log.csv` | Audit trail of data decisions |
+| `reports/synthetic_signatures.json` | Phase 2b machine-readable synthetic metrics |
+| `reports/prompt_gap_matrix.md` | Phase 5 prompt measurement gaps + proxy mapping |
 | `reports/q1_outcome_geography.html` | Q1 full notebook output |
 | `reports/q2_access_vs_outcomes.html` | Q2 full notebook output |
 | `reports/q3_outlier_communities.html` | Q3 full notebook output |

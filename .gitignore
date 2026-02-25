@@ -9,6 +9,9 @@ Agents.md
 # Generated database (185MB, exceeds GitHub 100MB limit)
 data/*.duckdb
 
+# Per-run metadata (timestamps, environment info)
+reports/_run_metadata.json
+
 # Python
 .venv/
 __pycache__/

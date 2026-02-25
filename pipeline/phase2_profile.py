@@ -1,7 +1,6 @@
 """Phase 2: Data quality profiling — read-only on raw_health, writes reports."""
 
 import csv
-from datetime import datetime, timezone
 
 import duckdb
 
@@ -28,7 +27,7 @@ def run(con: duckdb.DuckDBPyConnection) -> None:
         report_lines.append(text)
 
     report_lines.append("# Data Quality Report")
-    report_lines.append(f"Generated: {datetime.now(timezone.utc).isoformat()}")
+    report_lines.append("Generated: (see reports/_run_metadata.json)")
 
     # ── 1. Missingness ────────────────────────────────────────────────────────
     _h("Missingness by Column")
@@ -113,12 +112,13 @@ def run(con: duckdb.DuckDBPyConnection) -> None:
                LIST(DISTINCT disease_category_original) AS cats
         FROM raw_health
         GROUP BY disease_name
-        ORDER BY n_cats DESC
+        ORDER BY n_cats DESC, disease_name
     """).fetchall()
     _p("| Disease | # Original Categories | Categories |")
     _p("|---------|----------------------|------------|")
     for row in cat_audit:
-        _p(f"| {row[0]} | {row[1]} | {row[2]} |")
+        cats = sorted(row[2]) if row[2] else []
+        _p(f"| {row[0]} | {row[1]} | {cats} |")
     assumptions.append({
         "id": "A4",
         "assumption": "Original Disease Category column is unreliable — replaced by hand-curated map",
