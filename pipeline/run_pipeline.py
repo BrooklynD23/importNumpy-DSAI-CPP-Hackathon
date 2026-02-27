@@ -14,6 +14,7 @@ from pipeline import phase1_ingest, phase2_profile, phase3_clean, phase4_views
 from pipeline import phase2b_synthetic_signatures
 from pipeline import phase4b_robust_views
 from pipeline import phase5_prompt_gap_matrix
+from pipeline import phase5b_ml_diagnostic
 from pipeline.config import DB_PATH, PROJECT_ROOT, REPORTS_DIR
 
 
@@ -77,6 +78,7 @@ def main() -> None:
         ("Phase 4: Analytical Views", phase4_views),
         ("Phase 4b: Robustness (Dedup-at-Cell Views)", phase4b_robust_views),
         ("Phase 5: Prompt Gap Matrix", phase5_prompt_gap_matrix),
+        ("Phase 5b: ML Diagnostic — Prove Synthetic Data", phase5b_ml_diagnostic),
     ]
 
     total_start = time.time()

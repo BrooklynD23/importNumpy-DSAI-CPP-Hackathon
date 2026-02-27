@@ -8585,7 +8585,14 @@ Saudi Arabia        1.948932 -0.742026    -1.206906   74.933178       5.033806
 <div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<div class="highlight hl-python"><pre><span></span><span class="c1"># ── Robustness check: base vs dedup-at-cell-grain ─────────────────────────</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">notebooks._helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_robustness_delta</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">[ROBUSTNESS] Base vs dedup-at-cell-grain (Q3)'</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">get_robustness_delta</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="s1">'v_outlier_communities'</span><span class="p">))</span>
+
+<span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'Q3 analysis complete.'</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8596,6 +8603,72 @@ Saudi Arabia        1.948932 -0.742026    -1.206906   74.933178       5.033806
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+[ROBUSTNESS] Base vs dedup-at-cell-grain (Q3)
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>view_name</th>
+<th>base_rows</th>
+<th>dedup_rows</th>
+<th>base_only_keys</th>
+<th>dedup_only_keys</th>
+<th>metric1_name</th>
+<th>metric1_max_abs_delta</th>
+<th>metric2_name</th>
+<th>metric2_max_abs_delta</th>
+<th>metric3_name</th>
+<th>metric3_max_abs_delta</th>
+<th>pass</th>
+<th>pass_criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>v_outlier_communities</td>
+<td>20</td>
+<td>20</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>avg_access</td>
+<td>0.103928</td>
+<td>avg_mortality</td>
+<td>0.019928</td>
+<td>outlier_type_mismatch_rate</td>
+<td>0.0</td>
+<td>True</td>
+<td>Thresholds: access&lt;0.5pp, mortality&lt;0.05pp, mi...</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">

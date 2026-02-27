@@ -221,6 +221,9 @@ run.sh
         jupyter nbconvert --execute notebooks/${nb}.ipynb \
           --to html --output-dir=reports/ \
           --ExecutePreprocessor.timeout=300
+
+Optionally (default on local): `run.sh` can start a local dashboard server after the pipeline.
+Set `RUN_DASHBOARD=0` to skip.
 ```
 
 `benchmark_comparison` must run before `summary_executive` because the executive summary references benchmark figure filenames (though it does not re-generate them).
