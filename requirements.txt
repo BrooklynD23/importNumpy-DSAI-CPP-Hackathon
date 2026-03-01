@@ -8,3 +8,4 @@ scikit-learn>=1.4.0
 jupyterlab>=4.0.0
 nbconvert>=7.0.0
 ipykernel>=6.29
+python-pptx>=1.0.0

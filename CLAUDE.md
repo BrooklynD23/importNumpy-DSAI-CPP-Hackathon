@@ -41,7 +41,9 @@ run.sh
             ├── Q6: Premature conclusions
            ├── Benchmark comparison (dual-track analysis)
            └── Executive summary dashboard
-  └── 5. Local dashboard (optional; runs if RUN_DASHBOARD=1)
+  └── 5. python presentation/build_slides.py
+           └── presentation/DND_2026_importNumpy.pptx
+  └── 6. Local dashboard (optional; runs if RUN_DASHBOARD=1)
            ├── API:  http://localhost:8000
            └── Web:  http://localhost:3000
 ```

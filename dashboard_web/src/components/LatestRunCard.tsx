@@ -21,8 +21,17 @@ export function LatestRunCard() {
         <div className="text-xs text-slate-400">source: reports/_run_metadata.json</div>
       </div>
 
-      {error ? <div className="mt-2 text-sm text-red-300">{error}</div> : null}
-      {!data ? <div className="mt-2 text-sm text-slate-300">Loading…</div> : null}
+      {error ? (
+        <div className="mt-2 space-y-1">
+          <div className="text-sm text-red-300">{error}</div>
+          <div className="text-xs text-slate-400">
+            Tip: Make sure the API backend is running (port 8000). On Windows, run{" "}
+            <code className="rounded bg-slate-900 px-1">.\dashboard\run_local.ps1</code> or{" "}
+            <code className="rounded bg-slate-900 px-1">bash dashboard/run_local.sh</code> in WSL.
+          </div>
+        </div>
+      ) : null}
+      {!data && !error ? <div className="mt-2 text-sm text-slate-300">Loading…</div> : null}
 
       {data ? (
         <div className="mt-3 grid gap-3 sm:grid-cols-2">

@@ -1,0 +1,46 @@
+{
+  "n_rows_sampled": 10000,
+  "cv_folds": 5,
+  "features": [
+    "healthcare_access",
+    "doctors_per_1000",
+    "hospital_beds_per_1000",
+    "per_capita_income",
+    "education_index",
+    "urbanization_rate",
+    "population_affected",
+    "avg_treatment_cost_usd"
+  ],
+  "regression_probes": [
+    {
+      "target": "mortality_rate",
+      "cv_r2_mean": -0.003562,
+      "cv_r2_std": 0.002351,
+      "verdict": "Near-zero R\u00b2 \u2014 no predictable signal (consistent with synthetic data)"
+    },
+    {
+      "target": "recovery_rate",
+      "cv_r2_mean": -0.003069,
+      "cv_r2_std": 0.001574,
+      "verdict": "Near-zero R\u00b2 \u2014 no predictable signal (consistent with synthetic data)"
+    },
+    {
+      "target": "dalys",
+      "cv_r2_mean": -0.001672,
+      "cv_r2_std": 0.003343,
+      "verdict": "Near-zero R\u00b2 \u2014 no predictable signal (consistent with synthetic data)"
+    }
+  ],
+  "classification_probe": {
+    "target": "disease_category",
+    "cv_accuracy_mean": 0.4966,
+    "cv_accuracy_std": 0.0002,
+    "chance_accuracy": 0.125,
+    "verdict": "Above chance (49.7% vs 12.5%) \u2014 meaningful structure detected"
+  },
+  "overall_verdict": {
+    "conclusion": "Regression probes find no predictive structure (R\u00b2 \u2248 0). Classification is slightly above chance but not meaningfully so. Dataset is consistent with synthetic generation.",
+    "all_regression_near_zero": true,
+    "classification_at_chance": false
+  }
+}

@@ -212,7 +212,17 @@ else
     print_ok "Notebooks skipped — using existing HTML reports"
 fi
 
-# ── Step 5: Dashboard ────────────────────────────────────────────────────────
+# ── Step 5: Build PowerPoint presentation ────────────────────────────────────
+print_step "Building PowerPoint presentation"
+if [ -f "presentation/build_slides.py" ]; then
+    mkdir -p presentation
+    .venv/bin/python presentation/build_slides.py
+    print_ok "Presentation saved: presentation/DND_2026_importNumpy.pptx"
+else
+    print_warn "presentation/build_slides.py not found — skipping slide build"
+fi
+
+# ── Step 6: Dashboard ────────────────────────────────────────────────────────
 echo ""
 echo -e "${BOLD}═══════════════════════════════════════════════════════${RESET}"
 echo -e "${GREEN}${BOLD}  All done!${RESET}"
